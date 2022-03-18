@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,44 +8,44 @@ public class DifficultyDeterminer : MonoBehaviour
     [SerializeField] private List<Difficulty> normalDifficulties;
     [SerializeField] private List<Difficulty> hardDifficulties;
 
-    public static DifficultyDeterminer intance;
+    public static DifficultyDeterminer instance;
     
-    private Diffuculty _selectedDifficulty;
-    private Dictionary<Diffuculty, List<Difficulty>> _dictionaryDiffuclties = new Dictionary<Diffuculty, List<Difficulty>>();
+    private DifficultyMode _selectedDifficulty;
+    private Dictionary<DifficultyMode, List<Difficulty>> _dictionaryDifficulties = new Dictionary<DifficultyMode, List<Difficulty>>();
 
     private void Awake()
     {
-        if (intance != null) 
+        if (instance != null) 
         {
             DestroyImmediate (gameObject);
         } 
         else 
         {
-            intance = this;
+            instance = this;
             DontDestroyOnLoad (gameObject);
         }
     }
 
     private void Start()
     {
-        _dictionaryDiffuclties.Add(Diffuculty.Easy, easyDifficulties);
-        _dictionaryDiffuclties.Add(Diffuculty.Normal, normalDifficulties);
-        _dictionaryDiffuclties.Add(Diffuculty.Hard, hardDifficulties);
+        _dictionaryDifficulties.Add(DifficultyMode.Easy, easyDifficulties);
+        _dictionaryDifficulties.Add(DifficultyMode.Normal, normalDifficulties);
+        _dictionaryDifficulties.Add(DifficultyMode.Hard, hardDifficulties);
     }
 
     public List<Difficulty> GetDifficulty()
     {
-        return _dictionaryDiffuclties[_selectedDifficulty];
+        return _dictionaryDifficulties[_selectedDifficulty];
     }
 
-    public void SetDifficulty(Diffuculty difficulty)
+    public void SetDifficulty(DifficultyMode difficulty)
     {
         _selectedDifficulty = difficulty;
     }
 }
 
 [Serializable]
-public enum Diffuculty
+public enum DifficultyMode
 {
     Easy,
     Normal,

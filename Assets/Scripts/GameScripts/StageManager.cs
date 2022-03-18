@@ -10,7 +10,7 @@ public class StageManager : MonoBehaviour
 
     private void Awake()
     {
-        _difficultyDeterminer = DifficultyDeterminer.intance;
+        _difficultyDeterminer = DifficultyDeterminer.instance;
     }
 
     public bool GoToNextStage()
