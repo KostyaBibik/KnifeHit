@@ -8,7 +8,10 @@ namespace GameScripts
         private const string TimberTag = "Timber";
         private const string KnifeTag = "Knife";
         private const string AppleTag = "Apple";
-    
+
+        [SerializeField] private GameObject woodHitVFX; 
+        [SerializeField] private GameObject onKnifeHitVFX; 
+        
         private GameController _gameController;
         private Rigidbody2D _rigidbody;
         private BoxCollider2D _boxCollider;
@@ -27,8 +30,9 @@ namespace GameScripts
             if(other.transform.CompareTag(TimberTag))
             {
                 SoundManager.instance.PlayTimberHit();
-                
                 Vibration.Vibrate(100);
+
+                var woodHitVfx = Instantiate(woodHitVFX, transform.position, Quaternion.identity);
                 _boxCollider.isTrigger = true;
                 transform.parent = other.transform;
                 _gameController.CorrectHit();
@@ -36,6 +40,7 @@ namespace GameScripts
                 {
                     Destroy(_trailRenderer.gameObject);
                 }
+                Destroy(woodHitVfx, 1f);
                 Destroy(this);
             }
         }
@@ -50,9 +55,11 @@ namespace GameScripts
             }
             else if(other.transform.CompareTag(KnifeTag))
             {
+                var knifeHitVfx = Instantiate(onKnifeHitVFX, transform.position, Quaternion.identity);
                 SoundManager.instance.PlayKnifeHit();
                 _gameController.LoseHit();
                 _rigidbody.AddForce(new Vector2 (Random.Range (-10f, 10f), -30f), ForceMode2D.Impulse);
+                Destroy(knifeHitVfx, 3f);
                 Destroy(gameObject, 3f);
             }
 

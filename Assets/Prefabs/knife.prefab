@@ -145,6 +145,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0e43b1e41c50a04c928ababbf72bb4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  woodHitVFX: {fileID: 1816957874951856, guid: 46fbeb6276c660949bc3af78b7f46eb5, type: 3}
+  onKnifeHitVFX: {fileID: 1816957874951856, guid: c08b3295d815c2c49a44e43675bbc8f4, type: 3}
 --- !u!1 &1903635506557905137
 GameObject:
   m_ObjectHideFlags: 0
