@@ -58,10 +58,12 @@ namespace GameScripts
             {
                 if(_stageManager.GoToNextStage())
                 {
+                    Vibration.Vibrate(300);
                     StartCoroutine(nameof(ResetGame), true);
                 }
                 else
                 {
+                    Vibration.Vibrate(300);
                     _uiManager.ActivateWinPanel();
                     StartCoroutine(nameof(ResetGame), false);
                 }
@@ -82,7 +84,7 @@ namespace GameScripts
     
         public void LoseHit()
         {
-            Vibration.Vibrate(300);
+            Vibration.Vibrate(450);
             _uiManager.ActivateLosePanel();
             _timberController.DestroyTimber(false);
             _knivesManager.StopSpawnKnives();

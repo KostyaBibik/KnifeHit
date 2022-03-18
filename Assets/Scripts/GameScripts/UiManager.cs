@@ -47,4 +47,9 @@ public class UiManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
+    public void PlaySoundBtn()
+    {
+        SoundManager.instance.PlayBtnSfx();
+    }
 }

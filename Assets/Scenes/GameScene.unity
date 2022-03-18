@@ -248,6 +248,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1775039201}
+        m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
+        m_MethodName: PlaySoundBtn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &47671959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -662,6 +674,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1775039201}
+        m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
+        m_MethodName: PlaySoundBtn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &710150558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -916,6 +940,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1775039201}
         m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
         m_MethodName: RestartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1775039201}
+        m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
+        m_MethodName: PlaySoundBtn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1981,11 +2017,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1af7a8863bf75ce4fa32d233c0a92ba2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  difficulties:
-  - {fileID: 11400000, guid: 8f4c31d04cc286c4c982a065964dcc44, type: 2}
-  - {fileID: 11400000, guid: cb75d89f98f08a5499694ada53df7eb6, type: 2}
-  - {fileID: 11400000, guid: 564e88eca87462248a5ffc7adf8344d1, type: 2}
-  - {fileID: 11400000, guid: 8fbdf8dfd96a5704a8add2d021571021, type: 2}
   currentStage: 0
 --- !u!1 &1815411612
 GameObject:
@@ -2491,6 +2522,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1438463330}
         m_TargetAssemblyTypeName: TransitionHandler, Assembly-CSharp
         m_MethodName: StartFade
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1775039201}
+        m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
+        m_MethodName: PlaySoundBtn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
