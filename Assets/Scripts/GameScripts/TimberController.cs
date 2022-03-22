@@ -1,8 +1,11 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
+[RequireComponent(typeof(SpriteRenderer),
+    typeof(Rigidbody2D),
+    typeof(CircleCollider2D))]
 public class TimberController : MonoBehaviour
 {
     [SerializeField] private GameObject effectorPrefab;
@@ -41,6 +44,7 @@ public class TimberController : MonoBehaviour
         _currentRotations = rotationVariations;
         _appleVariations = appleVariations;
         _knifeAnglesSpawn = knifeAngles;
+        
         ApplyRotation();
         SpawnApples();
         SpawnKnives();
@@ -58,8 +62,11 @@ public class TimberController : MonoBehaviour
     {
         foreach (var apple in _appleVariations)
         {
-            GameObject tempApple = Instantiate(applePrefab, transform);
-            SetPosInTimber (tempApple.transform, apple.appleAngle, -1.7f, -90f);
+            if(Random.Range(0, 100) <= apple.chanceToSpawn)
+            {
+                GameObject tempApple = Instantiate(applePrefab, transform);
+                SetPosInTimber(tempApple.transform, apple.angleSpawn, -1.7f, -90f);
+            }
         }
     }
     
@@ -130,15 +137,16 @@ public class TimberController : MonoBehaviour
             fadeChildColors.Add(new Color(color.r, color.g, color.b, 0f));
         }
         
-        while (timeFade > 0.1f)
+        while (timeFade > 0f)
         {
-            timeFade -= Time.deltaTime * 1.5f;
+            timeFade -= Time.deltaTime;
             _spriteRenderer.color = Color.Lerp(fadeColorTimber, startColorTimber, timeFade);
             
             for (int i = 0; i < childSprites.Length; i++)
             {
                 childSprites[i].color = Color.Lerp(fadeChildColors[i], startChildColors[i], timeFade);
             }
+            
             yield return null;
         }
     }

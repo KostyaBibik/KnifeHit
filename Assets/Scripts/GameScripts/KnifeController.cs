@@ -10,7 +10,7 @@ namespace GameScripts
         private const string AppleTag = "Apple";
 
         [SerializeField] private GameObject woodHitVFX; 
-        [SerializeField] private GameObject onKnifeHitVFX; 
+        [SerializeField] private GameObject knifeHitVFX; 
         
         private GameController _gameController;
         private Rigidbody2D _rigidbody;
@@ -55,7 +55,7 @@ namespace GameScripts
             }
             else if(other.transform.CompareTag(KnifeTag))
             {
-                var knifeHitVfx = Instantiate(onKnifeHitVFX, transform.position, Quaternion.identity);
+                var knifeHitVfx = Instantiate(knifeHitVFX, transform.position, Quaternion.identity);
                 SoundManager.instance.PlayKnifeHit();
                 _gameController.LoseHit();
                 _rigidbody.AddForce(new Vector2 (Random.Range (-10f, 10f), -30f), ForceMode2D.Impulse);

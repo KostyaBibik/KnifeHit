@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class DifficultyDeterminer : MonoBehaviour
 {
-    [SerializeField] private List<Difficulty> easyDifficulties;
-    [SerializeField] private List<Difficulty> normalDifficulties;
-    [SerializeField] private List<Difficulty> hardDifficulties;
-
     public static DifficultyDeterminer instance;
-    
-    private DifficultyMode _selectedDifficulty;
-    private Dictionary<DifficultyMode, List<Difficulty>> _dictionaryDifficulties = new Dictionary<DifficultyMode, List<Difficulty>>();
+
+    [SerializeField] private List<Level> easyLevels;
+    [SerializeField] private List<Level> normalLevels;
+    [SerializeField] private List<Level> hardLevels;
+
+    private DifficultyMode selectedDifficulty;
+    private Dictionary<DifficultyMode, List<Level>> _dictionaryLevels = new Dictionary<DifficultyMode, List<Level>>();
 
     private void Awake()
     {
@@ -28,19 +28,29 @@ public class DifficultyDeterminer : MonoBehaviour
 
     private void Start()
     {
-        _dictionaryDifficulties.Add(DifficultyMode.Easy, easyDifficulties);
-        _dictionaryDifficulties.Add(DifficultyMode.Normal, normalDifficulties);
-        _dictionaryDifficulties.Add(DifficultyMode.Hard, hardDifficulties);
+        _dictionaryLevels.Add(DifficultyMode.Easy, easyLevels);
+        _dictionaryLevels.Add(DifficultyMode.Normal, normalLevels);
+        _dictionaryLevels.Add(DifficultyMode.Hard, hardLevels);
     }
 
-    public List<Difficulty> GetDifficulty()
+    public Level GetLevel(int level)
     {
-        return _dictionaryDifficulties[_selectedDifficulty];
+        return _dictionaryLevels[selectedDifficulty][level];
     }
 
+    public int GetLengthLevels()
+    {
+        return _dictionaryLevels[selectedDifficulty].Count;
+    }
+    
     public void SetDifficulty(DifficultyMode difficulty)
     {
-        _selectedDifficulty = difficulty;
+        selectedDifficulty = difficulty;
+    }
+
+    public DifficultyMode GetDifficulty()
+    {
+        return selectedDifficulty;
     }
 }
 

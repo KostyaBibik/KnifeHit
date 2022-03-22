@@ -10,6 +10,8 @@ namespace MainMenu
     
         [SerializeField] private TMP_Text appleText;
         [SerializeField] private Button playBtn;
+        
+        [Header("Mode toggles")]
         [SerializeField] private Toggle easyToggle; 
         [SerializeField] private Toggle normalToggle;
         [SerializeField] private Toggle hardToggle;
@@ -41,19 +43,19 @@ namespace MainMenu
                 _transitionHandler.StartFade();
             });
         
-            easyToggle.onValueChanged.AddListener(delegate(bool arg0)
+            easyToggle.onValueChanged.AddListener(delegate
             {
                 SoundManager.instance.PlayBtnSfx();
                 _difficultyDeterminer.SetDifficulty(DifficultyMode.Easy);
             });
         
-            normalToggle.onValueChanged.AddListener(delegate(bool arg0)
+            normalToggle.onValueChanged.AddListener(delegate
             {
                 SoundManager.instance.PlayBtnSfx();
                 _difficultyDeterminer.SetDifficulty(DifficultyMode.Normal);
             });
         
-            hardToggle.onValueChanged.AddListener(delegate(bool arg0)
+            hardToggle.onValueChanged.AddListener(delegate
             {
                 SoundManager.instance.PlayBtnSfx();
                 _difficultyDeterminer.SetDifficulty(DifficultyMode.Hard);

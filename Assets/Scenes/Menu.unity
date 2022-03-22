@@ -1435,25 +1435,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c725056fe04d0040ba34782e4e07d18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  easyDifficulties:
-  - {fileID: 11400000, guid: 8f4c31d04cc286c4c982a065964dcc44, type: 2}
-  - {fileID: 11400000, guid: cb75d89f98f08a5499694ada53df7eb6, type: 2}
-  - {fileID: 11400000, guid: 564e88eca87462248a5ffc7adf8344d1, type: 2}
-  - {fileID: 11400000, guid: 8fbdf8dfd96a5704a8add2d021571021, type: 2}
-  normalDifficulties:
-  - {fileID: 11400000, guid: 5ff1dec560638404eb4785520821b236, type: 2}
-  - {fileID: 11400000, guid: 717f80f25ff932241910a497b14af718, type: 2}
-  - {fileID: 11400000, guid: 508a909405048854ba4a6470820f7b35, type: 2}
-  - {fileID: 11400000, guid: f09edc1172a658949ba525c60d4f3240, type: 2}
-  - {fileID: 11400000, guid: e0d80090209d3274b9570ee8638e06a8, type: 2}
-  hardDifficulties:
-  - {fileID: 11400000, guid: 2c14ea681f7a0384da7f2fd2c296edf7, type: 2}
-  - {fileID: 11400000, guid: 904ee05646bb5074aaacd7db9c31f554, type: 2}
-  - {fileID: 11400000, guid: fd15908e541786142ae7d6d33dae374d, type: 2}
-  - {fileID: 11400000, guid: 0af41148cae8a4c468f6c5ad9e57806f, type: 2}
-  - {fileID: 11400000, guid: 354c47179043a454fabc25546e00df75, type: 2}
-  - {fileID: 11400000, guid: 74a8039315261e447bf8ef725642df7f, type: 2}
-  - {fileID: 11400000, guid: 0110684032424174087cdbb8b7ca12c2, type: 2}
+  easyLevels:
+  - {fileID: 11400000, guid: c7feecd255393934c8eb06182c0e982c, type: 2}
+  - {fileID: 11400000, guid: 4042fe0a967df724399fd85d7fd41c7b, type: 2}
+  - {fileID: 11400000, guid: 2d51198d899b1f64b9b789f2ebc2b9b5, type: 2}
+  - {fileID: 11400000, guid: ae169c00cabb5684c9f6212a4062f029, type: 2}
+  - {fileID: 11400000, guid: c641c7f2b98a95646869b6da0da651fe, type: 2}
+  - {fileID: 11400000, guid: 58fd11c1b11f3ad42b74e5a76365e001, type: 2}
+  normalLevels:
+  - {fileID: 11400000, guid: 8a30c36f3239747478920248a1f55b18, type: 2}
+  - {fileID: 11400000, guid: f35aa43235936194fa1b6d73e4c5ff9b, type: 2}
+  - {fileID: 11400000, guid: a781875d5cd36f246bd862a94ede8e21, type: 2}
+  hardLevels:
+  - {fileID: 11400000, guid: 7932e7b2847d43e41bac77aed213c253, type: 2}
+  - {fileID: 11400000, guid: 87bce5386e6432d4a9c1745f1f454d87, type: 2}
+  - {fileID: 11400000, guid: f409591fdffb0764d8575654c974cddc, type: 2}
+  - {fileID: 11400000, guid: 2c6635f08a24f3e41a4f1cd0a0466a59, type: 2}
 --- !u!4 &1047319817
 Transform:
   m_ObjectHideFlags: 0

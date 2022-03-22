@@ -1,66 +1,68 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class StageCounterUI : MonoBehaviour
+namespace GameScripts
 {
-    [SerializeField] private GameObject stageIcon;
-    [SerializeField] private Color unCompletedColor;
-    [SerializeField] private Color completedColor;
-    [SerializeField] private Color currentStageColor;
-    
-    private List<GameObject> _stagesList = new List<GameObject>();
-    private List<Image> _stagesImages = new List<Image>();
-    
-    private int _completedStagesCounter;
-    private int _currentLevel;
-
-    public void SetStagesCounts(int countStages)
+    public class StageCounterUI : MonoBehaviour
     {
-        foreach (var item in _stagesList)
-        {
-            Destroy (item);
-        }
-
-        _completedStagesCounter = 0;
-        _currentLevel = 0;
-        _stagesList.Clear();
-        _stagesImages.Clear();
-        
-        for (int i = 0; i < countStages; i++) 
-        {
-            GameObject temp = Instantiate(stageIcon, transform);
-
-            var image = temp.GetComponent<Image>();
-            image.color = unCompletedColor;
-            
-            _stagesList.Add(temp);
-            _stagesImages.Add(image);
-        }
-
-        DrawStages();
-    }
+        [SerializeField] private GameObject stageIcon;
+        [SerializeField] private Color unCompletedColor;
+        [SerializeField] private Color completedColor;
+        [SerializeField] private Color currentStageColor;
     
-    public void SetCompletedStages()
-    {
-        _completedStagesCounter++;
-        _currentLevel++;
+        private List<GameObject> _stagesList = new List<GameObject>();
+        private List<Image> _stagesImages = new List<Image>();
+    
+        private int _completedStagesCounter;
+        private int _currentStage;
 
-        DrawStages();
-    }
-
-    private void DrawStages()
-    {
-        for (int i = 0; i < _stagesList.Count; i++)
+        public void SetStagesCounts(int countStages)
         {
-            if (_currentLevel == i)
+            foreach (var item in _stagesList)
             {
-                _stagesImages[i].color = currentStageColor;
+                Destroy (item);
             }
-            else
+
+            _completedStagesCounter = 0;
+            _currentStage = 0;
+            _stagesList.Clear();
+            _stagesImages.Clear();
+        
+            for (int i = 0; i < countStages; i++) 
             {
-                _stagesImages[i].color = i < _completedStagesCounter ? completedColor : unCompletedColor;
+                GameObject temp = Instantiate(stageIcon, transform);
+
+                var image = temp.GetComponent<Image>();
+                image.color = unCompletedColor;
+            
+                _stagesList.Add(temp);
+                _stagesImages.Add(image);
+            }
+
+            DrawStages();
+        }
+    
+        public void SetCompletedStages()
+        {
+            _completedStagesCounter++;
+            _currentStage++;
+
+            DrawStages();
+        }
+
+        private void DrawStages()
+        {
+            for (int i = 0; i < _stagesList.Count; i++)
+            {
+                if (_currentStage == i)
+                {
+                    _stagesImages[i].color = currentStageColor;
+                }
+                else
+                {
+                    _stagesImages[i].color = i < _completedStagesCounter ? completedColor : unCompletedColor;
+                }
             }
         }
     }

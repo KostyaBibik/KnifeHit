@@ -14,7 +14,7 @@ namespace GameScripts
         private TimberController _timberController;
         private UiManager _uiManager;
         private KnifeCounterUI _knifeCounterUI;
-        private StageManager _stageManager;
+        private ProgressManager _progressManager;
     
         private int _usedKnives;
         private int _collectedApples;
@@ -25,7 +25,7 @@ namespace GameScripts
             _knivesManager = FindObjectOfType<KnivesManager>();
             _uiManager = FindObjectOfType<UiManager>();
             _knifeCounterUI = FindObjectOfType<KnifeCounterUI>();
-            _stageManager = FindObjectOfType<StageManager>();
+            _progressManager = FindObjectOfType<ProgressManager>();
         }
 
         private void Start()
@@ -38,10 +38,12 @@ namespace GameScripts
             {
                 PlayerPrefs.SetInt(AppleHash, 0);
             }
-        
+            
             _uiManager.UpdateAppleCount(_collectedApples);
-            _uiManager.SetStagesCount(_stageManager.GetNumberStages());
-        
+            _uiManager.SetStagesCount(_progressManager.GetNumberStages());
+            _uiManager.SetLevelProgress(_progressManager.currentLevel);
+            _uiManager.SetRecord(_progressManager.GetRecordLevel());    
+            
             CreateGame();
         }
 
@@ -56,18 +58,29 @@ namespace GameScripts
             }
             else
             {
-                if(_stageManager.GoToNextStage())
+                if(_progressManager.GoToNextStage())
                 {
-                    Vibration.Vibrate(300);
                     StartCoroutine(nameof(ResetGame), true);
+                    _uiManager.CompleteStage();
                 }
                 else
                 {
-                    Vibration.Vibrate(300);
-                    _uiManager.ActivateWinPanel();
-                    StartCoroutine(nameof(ResetGame), false);
+                    if (_progressManager.GoToNextLevel())
+                    {
+                        Vibration.Vibrate(300);
+                        StartCoroutine(nameof(ResetGame), true);
+                        
+                        _uiManager.SetStagesCount(_progressManager.GetNumberStages());
+                        _uiManager.SetLevelProgress(_progressManager.currentLevel);
+                    }
+                    else
+                    {
+                        Vibration.Vibrate(300);
+                        StartCoroutine(nameof(ResetGame), false);
+                        _uiManager.ActivateWinPanel();
+                        _uiManager.CompleteStage();
+                    }
                 }
-                _uiManager.CompleteStage();
             }
         }
 
@@ -93,10 +106,11 @@ namespace GameScripts
         private void CreateGame()
         {
             _usedKnives = 0;
+            
             _knivesManager.CreateKnife();
 
-            var difficulty = _stageManager.GetCurrentDifficulty();
-        
+            var difficulty = _progressManager.GetCurrentStage();
+            
             var newTimber = Instantiate(timber);
         
             _countOfKnives = difficulty.countOfKnives;
