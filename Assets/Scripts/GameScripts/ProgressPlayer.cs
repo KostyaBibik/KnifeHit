@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace GameScripts
 {
-    public class ProgressManager : MonoBehaviour
+    public class ProgressPlayer : MonoBehaviour
     {
         private const string LevelRecordHash = "RecordLevel";
         

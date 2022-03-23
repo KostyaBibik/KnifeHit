@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace MainMenu
 {
-    public class MainMenuManager : MonoBehaviour
+    public class MainMenuReferencesBtn : MonoBehaviour
     {
         private const string AppleHash = "CountCollectedApples";
     
@@ -60,7 +60,6 @@ namespace MainMenu
                 SoundManager.instance.PlayBtnSfx();
                 _difficultyDeterminer.SetDifficulty(DifficultyMode.Hard);
             });
-        
         }
     }
 }

@@ -10,11 +10,11 @@ namespace GameScripts
         [SerializeField] private GameObject timber;
         [SerializeField] private GameObject hitTimberVFX;
 
-        private KnivesManager _knivesManager;
+        private KnivesSpawner _knivesSpawner;
         private TimberController _timberController;
         private UiManager _uiManager;
         private KnifeCounterUI _knifeCounterUI;
-        private ProgressManager _progressManager;
+        private ProgressPlayer _progressPlayer;
     
         private int _usedKnives;
         private int _collectedApples;
@@ -22,10 +22,10 @@ namespace GameScripts
     
         private void Awake()
         {
-            _knivesManager = FindObjectOfType<KnivesManager>();
+            _knivesSpawner = FindObjectOfType<KnivesSpawner>();
             _uiManager = FindObjectOfType<UiManager>();
             _knifeCounterUI = FindObjectOfType<KnifeCounterUI>();
-            _progressManager = FindObjectOfType<ProgressManager>();
+            _progressPlayer = FindObjectOfType<ProgressPlayer>();
         }
 
         private void Start()
@@ -40,9 +40,9 @@ namespace GameScripts
             }
             
             _uiManager.UpdateAppleCount(_collectedApples);
-            _uiManager.SetStagesCount(_progressManager.GetNumberStages());
-            _uiManager.SetLevelProgress(_progressManager.currentLevel);
-            _uiManager.SetRecord(_progressManager.GetRecordLevel());    
+            _uiManager.SetStagesCount(_progressPlayer.GetNumberStages());
+            _uiManager.SetLevelProgress(_progressPlayer.currentLevel);
+            _uiManager.SetRecord(_progressPlayer.GetRecordLevel());    
             
             CreateGame();
         }
@@ -54,24 +54,24 @@ namespace GameScripts
             {
                 var timberVFX = Instantiate(hitTimberVFX, _timberController.transform.position, Quaternion.identity);
                 Destroy(timberVFX, 1.0f);
-                _knivesManager.CreateKnife();
+                _knivesSpawner.CreateKnife();
             }
             else
             {
-                if(_progressManager.GoToNextStage())
+                if(_progressPlayer.GoToNextStage())
                 {
                     StartCoroutine(nameof(ResetGame), true);
                     _uiManager.CompleteStage();
                 }
                 else
                 {
-                    if (_progressManager.GoToNextLevel())
+                    if (_progressPlayer.GoToNextLevel())
                     {
                         Vibration.Vibrate(300);
                         StartCoroutine(nameof(ResetGame), true);
                         
-                        _uiManager.SetStagesCount(_progressManager.GetNumberStages());
-                        _uiManager.SetLevelProgress(_progressManager.currentLevel);
+                        _uiManager.SetStagesCount(_progressPlayer.GetNumberStages());
+                        _uiManager.SetLevelProgress(_progressPlayer.currentLevel);
                     }
                     else
                     {
@@ -88,7 +88,7 @@ namespace GameScripts
         {
             _timberController.DestroyTimber(true);
             yield return new WaitForSeconds(1.5f);
-            _knivesManager.ClearKnives();
+            _knivesSpawner.ClearKnives();
             if(startNewGame)
             {
                 CreateGame();
@@ -100,16 +100,16 @@ namespace GameScripts
             Vibration.Vibrate(450);
             _uiManager.ActivateLosePanel();
             _timberController.DestroyTimber(false);
-            _knivesManager.StopSpawnKnives();
+            _knivesSpawner.StopSpawnKnives();
         }
 
         private void CreateGame()
         {
             _usedKnives = 0;
             
-            _knivesManager.CreateKnife();
+            _knivesSpawner.CreateKnife();
 
-            var difficulty = _progressManager.GetCurrentStage();
+            var difficulty = _progressPlayer.GetCurrentStage();
             
             var newTimber = Instantiate(timber);
         

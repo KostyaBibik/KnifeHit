@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace GameScripts
 {
-    public class KnivesManager : MonoBehaviour
+    public class KnivesSpawner : MonoBehaviour
     {
         [SerializeField] private GameObject knife;
         [SerializeField] private Transform knifePosSpawn;

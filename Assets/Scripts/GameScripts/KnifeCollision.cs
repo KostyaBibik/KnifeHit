@@ -3,7 +3,8 @@ using Random = UnityEngine.Random;
 
 namespace GameScripts
 {
-    public class KnifeController : MonoBehaviour
+    [RequireComponent(typeof(Rigidbody2D), typeof(BoxCollider2D))]
+    public class KnifeCollision : MonoBehaviour
     {
         private const string TimberTag = "Timber";
         private const string KnifeTag = "Knife";
@@ -20,6 +21,7 @@ namespace GameScripts
         private void Awake()
         {
             _gameController = FindObjectOfType<GameController>();
+            
             _rigidbody = GetComponent<Rigidbody2D>();
             _boxCollider = GetComponent<BoxCollider2D>();
             _trailRenderer = GetComponentInChildren<TrailRenderer>();
