@@ -2,6 +2,7 @@ using System.Text;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Zenject;
 
 namespace GameScripts
 {
@@ -13,13 +14,10 @@ namespace GameScripts
         [SerializeField] private TMP_Text levelProgress;
         [SerializeField] private TMP_Text recordLevel;
         
-        private StageCounterUI _stageCounter;
-        private int _recordLevel;
+        [Inject] private StageCounterUI _stageCounter;
+        [Inject] private SoundManager _soundManager;
         
-        private void Awake()
-        {
-            _stageCounter = FindObjectOfType<StageCounterUI>();
-        }
+        private int _recordLevel;
 
         public void SetStagesCount(int count)
         {
@@ -69,7 +67,7 @@ namespace GameScripts
 
         public void PlaySoundBtn()
         {
-            SoundManager.instance.PlayBtnSfx();
+            _soundManager.PlayBtnSfx();
         }
     }
 }

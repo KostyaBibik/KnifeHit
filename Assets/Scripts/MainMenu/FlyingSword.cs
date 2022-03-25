@@ -1,11 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
-public class FlyingSword : MonoBehaviour
+namespace MainMenu
 {
-    public void PlaySoundSword()
+    public class FlyingSword : MonoBehaviour
     {
-        SoundManager.instance.PlayKnifeThrow();
+        [Inject] private SoundManager _soundManager;
+    
+        public void PlaySoundSword()
+        {
+            _soundManager.PlayKnifeThrow();
+        }
     }
 }

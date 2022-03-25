@@ -1,4 +1,5 @@
 using UnityEngine;
+using Zenject;
 
 namespace GameScripts
 {
@@ -9,12 +10,7 @@ namespace GameScripts
         [HideInInspector] public int currentStage;
         [HideInInspector] public int currentLevel;
         
-        private DifficultyDeterminer _difficultyDeterminer;
-
-        private void Awake()
-        {
-            _difficultyDeterminer = DifficultyDeterminer.instance;
-        }
+        [Inject] private DifficultyDeterminer _difficultyDeterminer;
 
         private void Start()
         {

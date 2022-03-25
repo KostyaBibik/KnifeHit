@@ -1,10 +1,9 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
 public class SoundManager : MonoBehaviour
 {
-    public static SoundManager instance;
-
     [SerializeField] private AudioClip btnClip;
     [SerializeField] private AudioClip timberClip;
     [SerializeField] private AudioClip appleClip;
@@ -15,16 +14,7 @@ public class SoundManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-            efxSource = GetComponent<AudioSource>();
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        efxSource = GetComponent<AudioSource>();
     }
 
     private void PlaySingle(AudioClip clip, float vol = 1f)

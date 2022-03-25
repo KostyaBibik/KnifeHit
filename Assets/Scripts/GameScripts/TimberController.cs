@@ -13,15 +13,16 @@ public class TimberController : MonoBehaviour
     [SerializeField] private GameObject knifePrefab;
     
     private List<Rigidbody2D> _partsOfTimber = new List<Rigidbody2D>();
-    private bool _isLosed;
+    private List<RotationVariation> _currentRotations;
+    private List<AppleVariations> _appleVariations;
+    private List<float> _knifeAnglesSpawn;
+    
     private SpriteRenderer _spriteRenderer;
     private Rigidbody2D _rigidbody;
     private CircleCollider2D _timberCollider;
     private GameObject _activeEffector;
-    private List<RotationVariation> _currentRotations;
-    private List<AppleVariations> _appleVariations;
-    private List<float> _knifeAnglesSpawn;
     private int _currentRotationIndex;
+    private bool _isLosed;
     
     private void Awake()
     {
@@ -154,9 +155,9 @@ public class TimberController : MonoBehaviour
     private IEnumerator ClearTimber()
     {
         yield return new WaitForSeconds(1.3f);
-        var childs = transform.GetComponentInChildren<Transform>();
+        var transformChilds = transform.GetComponentInChildren<Transform>();
         
-        foreach (Transform child in childs)
+        foreach (Transform child in transformChilds)
         {
             Destroy(child.gameObject);
         }

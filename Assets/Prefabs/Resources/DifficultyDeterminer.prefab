@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &765349557515565644
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 765349557515565634}
+  - component: {fileID: 765349557515565635}
+  m_Layer: 0
+  m_Name: DifficultyDeterminer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &765349557515565634
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 765349557515565644}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.010953452, y: -1.0442567, z: 64.901695}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &765349557515565635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 765349557515565644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c725056fe04d0040ba34782e4e07d18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  easyLevels:
+  - {fileID: 11400000, guid: c7feecd255393934c8eb06182c0e982c, type: 2}
+  - {fileID: 11400000, guid: 4042fe0a967df724399fd85d7fd41c7b, type: 2}
+  - {fileID: 11400000, guid: 2d51198d899b1f64b9b789f2ebc2b9b5, type: 2}
+  - {fileID: 11400000, guid: ae169c00cabb5684c9f6212a4062f029, type: 2}
+  - {fileID: 11400000, guid: c641c7f2b98a95646869b6da0da651fe, type: 2}
+  - {fileID: 11400000, guid: 58fd11c1b11f3ad42b74e5a76365e001, type: 2}
+  normalLevels:
+  - {fileID: 11400000, guid: 8a30c36f3239747478920248a1f55b18, type: 2}
+  - {fileID: 11400000, guid: f35aa43235936194fa1b6d73e4c5ff9b, type: 2}
+  - {fileID: 11400000, guid: a781875d5cd36f246bd862a94ede8e21, type: 2}
+  hardLevels:
+  - {fileID: 11400000, guid: 7932e7b2847d43e41bac77aed213c253, type: 2}
+  - {fileID: 11400000, guid: 87bce5386e6432d4a9c1745f1f454d87, type: 2}
+  - {fileID: 11400000, guid: f409591fdffb0764d8575654c974cddc, type: 2}
+  - {fileID: 11400000, guid: 2c6635f08a24f3e41a4f1cd0a0466a59, type: 2}

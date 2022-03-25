@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace MainMenu
 {
@@ -16,14 +17,9 @@ namespace MainMenu
         [SerializeField] private Toggle normalToggle;
         [SerializeField] private Toggle hardToggle;
     
-        private TransitionHandler _transitionHandler;
-        private DifficultyDeterminer _difficultyDeterminer;
-    
-        private void Awake()
-        {
-            _transitionHandler = FindObjectOfType<TransitionHandler>();
-            _difficultyDeterminer = FindObjectOfType<DifficultyDeterminer>();
-        }
+        [Inject] private TransitionHandler _transitionHandler;
+        [Inject] private DifficultyDeterminer _difficultyDeterminer;
+        [Inject] private SoundManager _soundManager;
 
         private void Start()
         {
@@ -39,25 +35,25 @@ namespace MainMenu
         
             playBtn.onClick.AddListener(delegate
             {
-                SoundManager.instance.PlayBtnSfx();
+                _soundManager.PlayBtnSfx();
                 _transitionHandler.StartFade();
             });
         
             easyToggle.onValueChanged.AddListener(delegate
             {
-                SoundManager.instance.PlayBtnSfx();
+                _soundManager.PlayBtnSfx();
                 _difficultyDeterminer.SetDifficulty(DifficultyMode.Easy);
             });
         
             normalToggle.onValueChanged.AddListener(delegate
             {
-                SoundManager.instance.PlayBtnSfx();
+                _soundManager.PlayBtnSfx();
                 _difficultyDeterminer.SetDifficulty(DifficultyMode.Normal);
             });
         
             hardToggle.onValueChanged.AddListener(delegate
             {
-                SoundManager.instance.PlayBtnSfx();
+                _soundManager.PlayBtnSfx();
                 _difficultyDeterminer.SetDifficulty(DifficultyMode.Hard);
             });
         }

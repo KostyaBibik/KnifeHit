@@ -1,4 +1,5 @@
 using UnityEngine;
+using Zenject;
 using Random = UnityEngine.Random;
 
 namespace GameScripts
@@ -13,15 +14,16 @@ namespace GameScripts
         [SerializeField] private GameObject woodHitVFX; 
         [SerializeField] private GameObject knifeHitVFX; 
         
-        private GameController _gameController;
+        [Inject] private GameController _gameController;
+        
         private Rigidbody2D _rigidbody;
         private BoxCollider2D _boxCollider;
         private TrailRenderer _trailRenderer;
-    
+
+        [Inject] private SoundManager _soundManager;
+        
         private void Awake()
         {
-            _gameController = FindObjectOfType<GameController>();
-            
             _rigidbody = GetComponent<Rigidbody2D>();
             _boxCollider = GetComponent<BoxCollider2D>();
             _trailRenderer = GetComponentInChildren<TrailRenderer>();
@@ -31,7 +33,7 @@ namespace GameScripts
         {
             if(other.transform.CompareTag(TimberTag))
             {
-                SoundManager.instance.PlayTimberHit();
+                _soundManager.PlayTimberHit();
                 Vibration.Vibrate(100);
 
                 var woodHitVfx = Instantiate(woodHitVFX, transform.position, Quaternion.identity);
@@ -53,12 +55,12 @@ namespace GameScripts
             {
                 Vibration.Vibrate(100);
                 _gameController.HitOnApple();
-                SoundManager.instance.PlayAppleHit();
+                _soundManager.PlayAppleHit();
             }
             else if(other.transform.CompareTag(KnifeTag))
             {
                 var knifeHitVfx = Instantiate(knifeHitVFX, transform.position, Quaternion.identity);
-                SoundManager.instance.PlayKnifeHit();
+                _soundManager.PlayKnifeHit();
                 _gameController.LoseHit();
                 _rigidbody.AddForce(new Vector2 (Random.Range (-10f, 10f), -30f), ForceMode2D.Impulse);
                 Destroy(knifeHitVfx, 3f);

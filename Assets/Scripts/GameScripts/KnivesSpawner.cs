@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
+using Zenject;
 
 namespace GameScripts
 {
@@ -12,16 +13,14 @@ namespace GameScripts
         [SerializeField, Range(.1f, .5f)] private float delayCastKnife;
         
         private GameObject _currentKnife;
-        private KnifeCounterUI _knifeCounterUI;
         private List<GameObject> _knives = new List<GameObject>();
         private bool _isReady = true;
         private float _lastTimeCast;
-        
-        private void Awake()
-        {
-            _knifeCounterUI = FindObjectOfType<KnifeCounterUI>();
-        }
 
+        [Inject] private SoundManager _soundManager;
+        [Inject] private DiContainer _diContainer;
+        [Inject] private KnifeCounterUI _knifeCounterUI;
+        
         private void Update()
         {
             if (Input.GetMouseButtonDown(0))
@@ -29,7 +28,7 @@ namespace GameScripts
                 if(_currentKnife && _isReady && Time.time - _lastTimeCast > delayCastKnife)
                 {
                     _lastTimeCast = Time.time;
-                    SoundManager.instance.PlayKnifeThrow();
+                    _soundManager.PlayKnifeThrow();
                     _currentKnife.GetComponent<Rigidbody2D>().AddForce(forceCast * Vector2.up, ForceMode2D.Impulse);
                     _knifeCounterUI.SetUsedKnives();
                     _currentKnife = null;
@@ -39,7 +38,7 @@ namespace GameScripts
 
         public void CreateKnife()
         {
-            _currentKnife = Instantiate(knife, knifePosSpawn.position, quaternion.identity);
+            _currentKnife = _diContainer.InstantiatePrefab(knife, knifePosSpawn.position, Quaternion.identity, null);
             _knives.Add(_currentKnife);
         }
 

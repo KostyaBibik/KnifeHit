@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class DifficultyDeterminer : MonoBehaviour
 {
-    public static DifficultyDeterminer instance;
-
     [SerializeField] private List<Level> easyLevels;
     [SerializeField] private List<Level> normalLevels;
     [SerializeField] private List<Level> hardLevels;
@@ -13,7 +11,7 @@ public class DifficultyDeterminer : MonoBehaviour
     private DifficultyMode selectedDifficulty;
     private Dictionary<DifficultyMode, List<Level>> _dictionaryLevels = new Dictionary<DifficultyMode, List<Level>>();
 
-    private void Awake()
+    /*private void Awake()
     {
         if (instance != null) 
         {
@@ -24,7 +22,7 @@ public class DifficultyDeterminer : MonoBehaviour
             instance = this;
             DontDestroyOnLoad (gameObject);
         }
-    }
+    }*/
 
     private void Start()
     {

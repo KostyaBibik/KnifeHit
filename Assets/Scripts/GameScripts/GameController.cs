@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using Zenject;
 
 namespace GameScripts
 {
@@ -10,23 +11,16 @@ namespace GameScripts
         [SerializeField] private GameObject timber;
         [SerializeField] private GameObject hitTimberVFX;
 
-        private KnivesSpawner _knivesSpawner;
+        [Inject] private KnivesSpawner _knivesSpawner;
+        [Inject] private UiManager _uiManager;
+        [Inject] private KnifeCounterUI _knifeCounterUI;
+        [Inject] private ProgressPlayer _progressPlayer;
+        
         private TimberController _timberController;
-        private UiManager _uiManager;
-        private KnifeCounterUI _knifeCounterUI;
-        private ProgressPlayer _progressPlayer;
-    
+
         private int _usedKnives;
         private int _collectedApples;
         private int _countOfKnives;
-    
-        private void Awake()
-        {
-            _knivesSpawner = FindObjectOfType<KnivesSpawner>();
-            _uiManager = FindObjectOfType<UiManager>();
-            _knifeCounterUI = FindObjectOfType<KnifeCounterUI>();
-            _progressPlayer = FindObjectOfType<ProgressPlayer>();
-        }
 
         private void Start()
         {
